@@ -1,6 +1,11 @@
 import server from "./server";
-import * as secp from "ethereum-cryptography/secp256k1";
-import { toHex } from "ethereum-cryptography/utils";
+import * as secp from 'ethereum-cryptography/secp256k1';
+import {toHex} from 'ethereum-cryptography/utils';
+
+/*
+  send tx, a signed tx, to server, then server recovers pub key from
+  that sig, and only goes through if that public key has those funds
+*/
 
 function Wallet({ address, setAddress, balance, setBalance, privateKey, setPrivateKey }) {
   async function onChange(evt) {
@@ -24,11 +29,11 @@ function Wallet({ address, setAddress, balance, setBalance, privateKey, setPriva
 
       <label>
         Private Key
-        <input placeholder="Type in a private Key" value={privateKey} onChange={onChange}></input>
+        <input placeholder="Type private key" value={privateKey} onChange={onChange}></input>
       </label>
 
       <div>
-        Address: {address.slice(0, 10)}...
+        Address: {address.slice(0,10)+'...'}
       </div>
 
       <div className="balance">Balance: {balance}</div>
